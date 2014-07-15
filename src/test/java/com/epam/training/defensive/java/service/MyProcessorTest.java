@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
+import net.sf.oval.exception.ConstraintsViolatedException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,15 +13,15 @@ import static com.epam.training.defensive.java.service.AOPTestHelper.createAOPPr
 
 public class MyProcessorTest {
 
-	private MyProcessor underTest;
+	private MyTransaction underTest;
 	
 	@Before
 	public void setUp() {
-		underTest = createAOPProxy( new MyProcessor());
+		underTest = createAOPProxy( new MyTransaction());
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void testAddNullAmount() {
+	@Test(expected =  ConstraintsViolatedException.class)
+	public void testAddPastDate() {
         //given
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DAY_OF_YEAR, -1);

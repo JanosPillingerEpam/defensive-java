@@ -7,10 +7,12 @@ import net.sf.oval.constraint.DateRange;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotNegative;
 import net.sf.oval.constraint.NotNull;
+import net.sf.oval.guard.Guarded;
 
 import com.epam.training.defensive.java.interfaces.Transaction;
 
-public class MyProcessor implements Transaction {
+@Guarded
+public class MyTransaction implements Transaction {
 
 	/**
 	 * Add the given money to the account.
